@@ -10,15 +10,16 @@ def Start():
   Plugin.AddPrefixHandler(BP_PLUGIN_PREFIX, MainMenu, PLUGIN_TITLE, ICON, ART)
   Plugin.AddViewGroup("ImageStream", viewMode="Pictures", mediaType="items")
   Plugin.AddViewGroup("List", viewMode="List", mediaType="items")
+  Plugin.AddViewGroup("InfoList", viewMode="InfoList", mediaType="items")
 
   ObjectContainer.art       = R(ART)
   ObjectContainer.title1    = PLUGIN_TITLE
-  ObjectContainer.view_group = "List"
+  ObjectContainer.view_group = "InfoList"
   DirectoryObject.thumb      = R(ICON)
 
 ####################################################################################################
 def MainMenu():
-  oc = ObjectContainer(view_group = "List")
+  oc = ObjectContainer(view_group = "InfoList")
   feed = XML.ElementFromURL(BP_RSS_FEED)
   for item in feed.xpath("//rss//channel//item"):
     description = item.xpath(".//description")[0].text.replace('&gt;','>').replace('&lt','<')
