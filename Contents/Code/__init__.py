@@ -24,7 +24,13 @@ def MainMenu():
   feed = XML.ElementFromURL(BP_RSS_FEED)
   for item in feed.xpath("//rss//channel//item"):
     description = item.xpath(".//description")[0].text.replace('&gt;','>').replace('&lt','<')
-    thumb = HTML.ElementFromString(description).xpath(".//div[@class='bpImageTop']//img")[0].get('src')
+
+    # If no thumb is provided, we can assume no photo is available. This has been found when a daily
+    # post was not made, actually due to illness. :(
+    try:
+      thumb = HTML.ElementFromString(description).xpath(".//div[@class='bpImageTop']//img")[0].get('src')
+    except: continue
+
     url = item.xpath(".//pheedo:origLink", namespaces = NAMESPACES)[0].text
     title = item.xpath(".//title")[0].text
     oc.add(PhotoAlbumObject(url=url, title=title, thumb=thumb))
