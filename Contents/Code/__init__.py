@@ -1,7 +1,6 @@
 BP_PLUGIN_PREFIX = "/photos/TheBigPicture"
 PLUGIN_TITLE = "The Big Picture"
 BP_RSS_FEED = "http://feeds.boston.com/boston/bigpicture/index"
-NAMESPACES = {"pheedo": "http://www.pheedo.com/namespace/pheedo"}
 
 ART = R("art-default.jpg")
 ICON = R("icon-default.png")
